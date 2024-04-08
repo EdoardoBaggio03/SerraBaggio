@@ -1,4 +1,3 @@
-
 void apri() {
   display.clearDisplay();
   display.setTextSize(2);

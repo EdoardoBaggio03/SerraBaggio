@@ -2,7 +2,7 @@
 #include <DHT.h>
 #include <DHT_U.h>
 #define DHTPIN 6
-#define DHTTYPE    DHT11
+#define DHTTYPE    DHT22
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -81,9 +81,9 @@ void loop() {
   sensors_event_t misura;
 
   dht.temperature().getEvent(&misura);
-  //input=Serial.readStringUntil('\n');
-  //Serial.println(misura.temperature);
-  //Serial.println(analogRead(A3));
+  input=Serial.readStringUntil('\n');
+  Serial.println(misura.temperature);
+  Serial.println(analogRead(A3));
   display.setTextSize(2);
   display.setCursor(0, 5);
   display.print("T:");
@@ -93,12 +93,12 @@ void loop() {
   display.print(" C");
 
 
-  if (misura.temperature >= 25 && !aperto) {
+  if (misura.temperature >= 30 && !aperto) {
     apri();
     delay(25000);
     ferma();
   }
-  if (misura.temperature <= 23 && aperto) {
+  if (misura.temperature <= 25 && aperto) {
     chiudi();
     delay(25000);
     ferma();
